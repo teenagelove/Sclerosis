@@ -1,0 +1,65 @@
+# SwiftLint configuration
+
+reporter: "xcode"
+check_for_updates: true
+
+line_length:
+  warning: 110   # Максимальная длина строки для предупреждения
+
+file_length:
+  warning: 500   # Предупреждение при превышении 500 строк
+  error: 900     # Ошибка при превышении 900 строк
+
+type_body_length:
+  warning: 250   # warning: большие ViewStruct’ы — сигнал к рефакторингу
+  error: 350     # error: ещё более строгий предел
+
+function_body_length:
+  warning: 50    # warning при длинных методах
+  error: 80      # ошибка, если метод слишком длинный
+
+function_parameter_count:
+  warning: 10
+  error: 15
+
+identifier_name:
+  min_length:
+    error: 3
+  excluded:
+    - id
+    - URL
+    - x
+    - y
+
+type_name:
+  min_length: 3
+  max_length:
+    warning: 40
+    error: 50
+
+disabled_rules:
+  - control_statement           # SwiftUI часто использует if/guard прямо в body
+  - trailing_whitespace         # Для визуального разделения View-структур
+  - nesting                     # Вложенность в SwiftUI — это нормально (View в View)
+
+opt_in_rules:
+  - force_unwrapping            # Запретить ! (crash в рантайме)
+  - force_try                   # Запретить try! (crash в рантайме)
+  - force_cast                  # Запретить as! (crash в рантайме)
+  - sorted_imports              # Импорты по алфавиту
+  - private_swiftui_state       # @State должен быть private (важно для SwiftUI)
+  - prefer_condition_list       # guard/if с несколькими условиями — в одну строку
+  - closure_spacing             # Пробелы в замыканиях (читабельность)
+  - operator_usage_whitespace   # Пробелы вокруг операторов
+  - discouraged_optional_boolean # Не использовать Optional<Bool> (мутно для UI)
+  - file_name                   # Имя файла = имя основной сущности
+  - file_name_no_space          # Без пробелов в именах файлов
+  - type_contents_order         # Порядок свойств/методов/инициализаторов
+  - yoda_condition              # Запретить “йода-условия” (например, if 0 == count)
+
+analyzer_rules:
+  - unused_import               # Удалять неиспользуемые импорты
+  - unused_declaration          # Находить “мёртвый” код
+
+excluded:
+  - .git
