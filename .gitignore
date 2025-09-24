@@ -5,6 +5,7 @@
 ## User settings
 xcuserdata/
 .DS_Store
+.git*
 
 ## Obj-C/Swift specific
 *.hmap
