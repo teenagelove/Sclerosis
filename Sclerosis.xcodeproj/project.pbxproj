@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		ACBD51622E815E28006441C6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ACBD51612E815E28006441C6 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		ACA817742E7FEAA400E78841 /* Sclerosis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sclerosis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACBD51622E815E28006441C6 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +72,7 @@
 			);
 			name = Sclerosis;
 			packageProductDependencies = (
+				ACBD51612E815E28006441C6 /* Kingfisher */,
 			);
 			productName = Sclerosis;
 			productReference = ACA817742E7FEAA400E78841 /* Sclerosis.app */;
@@ -100,6 +106,7 @@
 			packageReferences = (
 				ACEA1F2E2E80197A00B679DC /* XCRemoteSwiftPackageReference "xcstrings-tool-plugin" */,
 				ACEA1F352E801B6E00B679DC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				ACBD51602E815E28006441C6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ACA817752E7FEAA400E78841 /* Products */;
@@ -366,6 +373,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		ACBD51602E815E28006441C6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.5.0;
+			};
+		};
 		ACEA1F2E2E80197A00B679DC /* XCRemoteSwiftPackageReference "xcstrings-tool-plugin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/liamnichols/xcstrings-tool-plugin";
@@ -385,6 +400,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		ACBD51612E815E28006441C6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACBD51602E815E28006441C6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		ACEA1F2F2E80198900B679DC /* XCStringsToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ACEA1F2E2E80197A00B679DC /* XCRemoteSwiftPackageReference "xcstrings-tool-plugin" */;

@@ -8,4 +8,6 @@
 extension String {
     static let calendar = "calendar"
     static let library = "books.vertical"
+    static let plus = "plus"
+    static let trash = "trash"
 }
