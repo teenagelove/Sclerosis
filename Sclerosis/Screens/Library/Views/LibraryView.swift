@@ -20,24 +20,27 @@ struct LibraryView: View {
     }
 
     var body: some View {
-        List {
-            ForEach(filteredShows) { show in
-                Section {
-                    ShowCardView(show: show)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            Button(role: .destructive) {
-                                delete(show)
-                            } label: {
-                                Label(.delete, systemImage: .trash)
+        NavigationStack {
+            List {
+                ForEach(filteredShows) { show in
+                    Section {
+                        ShowCardView(show: show)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button(role: .destructive) {
+                                    delete(show)
+                                } label: {
+                                    Label(.delete, systemImage: .trash)
+                                }
                             }
-                        }
+                    }
                 }
             }
+            .searchable(text: $searchableText)
+            .navigationTitle(.libraryTitle)
+            .animation(.default, value: searchableText)
+            .toolbar { ToolbarItem(placement: .topBarTrailing) { PlustButton { } } }
+            .toolbarRole(.editor)
         }
-        .searchable(text: $searchableText)
-        .navigationTitle(.libraryTitle)
-        .animation(.default, value: searchableText)
-        .toolbar { ToolbarItem(placement: .topBarTrailing) { PlustButton { } } }
     }
 
     private func delete(_ show: Show) {

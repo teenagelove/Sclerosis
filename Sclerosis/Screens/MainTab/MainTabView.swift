@@ -18,12 +18,10 @@ struct MainTabView: View {
                 Label(.calendarTitle, systemImage: .calendar)
             }
 
-            NavigationStack {
-                LibraryView()
-            }
-            .tabItem {
-                Label(.libraryTitle, systemImage: .library)
-            }
+            LibraryView()
+                .tabItem {
+                    Label(.libraryTitle, systemImage: .library)
+                }
         }
     }
 }
