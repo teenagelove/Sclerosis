@@ -57,6 +57,30 @@ extension Show {
                 description: "Драматизация событий вокруг аварии на ЧАЭС 1986 года.",
                 cover: URL(string: "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/3d0b4a89-acd9-49ac-a83e-480c18c41baa/600x900")!,
                 seasons: [chernobylSeason1]
+            ),
+            Show(
+                name: "Чернобыль",
+                description: "Драматизация событий вокруг аварии на ЧАЭС 1986 года.",
+                cover: URL(string: "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/3d0b4a89-acd9-49ac-a83e-480c18c41baa/600x900")!,
+                seasons: [chernobylSeason1]
+            ),
+            Show(
+                name: "Чернобыль",
+                description: "Драматизация событий вокруг аварии на ЧАЭС 1986 года.",
+                cover: URL(string: "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/3d0b4a89-acd9-49ac-a83e-480c18c41baa/600x900")!,
+                seasons: [chernobylSeason1]
+            ),
+            Show(
+                name: "Чернобыль",
+                description: "Драматизация событий вокруг аварии на ЧАЭС 1986 года.",
+                cover: URL(string: "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/3d0b4a89-acd9-49ac-a83e-480c18c41baa/600x900")!,
+                seasons: [chernobylSeason1]
+            ),
+            Show(
+                name: "Чернобыль",
+                description: "Драматизация событий вокруг аварии на ЧАЭС 1986 года.",
+                cover: URL(string: "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/3d0b4a89-acd9-49ac-a83e-480c18c41baa/600x900")!,
+                seasons: [chernobylSeason1]
             )
         ]
     }()

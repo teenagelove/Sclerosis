@@ -8,48 +8,61 @@
 import SwiftUI
 
 struct LibraryView: View {
-    @State private var viewModel = LibraryViewModel()
-    @State private var searchableText: String = ""
-
-    private var filteredShows: [Show] {
-        let query = searchableText.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !query.isEmpty else { return viewModel.shows }
-        return viewModel.shows.filter { show in
-            show.name.localizedCaseInsensitiveContains(query)
-        }
-    }
+    @Bindable var viewModel: LibraryViewModel
+    @SceneStorage("selectedTab") private var selectedTab: Int = .zero
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(filteredShows) { show in
-                    Section {
-                        ShowCardView(show: show)
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button(role: .destructive) {
-                                    delete(show)
-                                } label: {
-                                    Label(.delete, systemImage: .trash)
-                                }
-                            }
-                    }
+            Group {
+                switch viewModel.state {
+                case .loading:
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                case .loaded(let shows):
+                    showsList(shows: shows)
+                case .error(let error):
+                    ErrorView(
+                        message: error.localizedDescription,
+                        action: { Task { await viewModel.loadShows() } }
+                    )
                 }
             }
-            .searchable(text: $searchableText)
             .navigationTitle(.libraryTitle)
-            .animation(.default, value: searchableText)
-            .toolbar { ToolbarItem(placement: .topBarTrailing) { PlustButton { } } }
-            .toolbarRole(.editor)
+            .animation(.default, value: viewModel.filter)
+            .onAppear { viewModel.filter = "" }
+            .onChange(of: selectedTab) { _, _ in viewModel.filter = "" }
+            .toolbar { ToolbarItem(placement: .topBarTrailing) { PlusButton {} } }
+            .task { await viewModel.loadShows() }
+            .refreshable { await viewModel.loadShows(isUpdate: true) }
         }
     }
+}
 
-    private func delete(_ show: Show) {
-        viewModel.shows.removeAll(where: { $0.id == show.id }) // hardcode
+private extension LibraryView {
+    func showsList(shows: [Show]) -> some View {
+        List {
+            ForEach(shows) { show in
+                Section {
+                    ShowCardView(show: show)
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            Button(role: .destructive) {
+                                viewModel.deleteShow(show)
+                            } label: {
+                                Label(.delete, systemImage: .trash)
+                            }
+                        }
+                }
+            }
+        }
+        .conditionalSearchable(
+            selectedTab: selectedTab,
+            text: $viewModel.filter
+        )
     }
 }
 
 #Preview {
     NavigationStack {
-        LibraryView()
+        LibraryView(viewModel: LibraryViewModel())
     }
 }

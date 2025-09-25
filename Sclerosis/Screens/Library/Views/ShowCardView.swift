@@ -21,13 +21,12 @@ struct ShowCardView: View {
 
 private extension ShowCardView {
     var cover: some View {
-        KFImage(show.cover)
-            .forceRefresh(true) // debug
+        KFImage(show.cover) .forceRefresh(true) // debug
             .fade(duration: 0.3)
             .placeholder { SkeletonView() }
             .resizable()
             .scaledToFill()
-            .frame(maxWidth: 140, maxHeight: 200) // hardcode
+            .frame(maxWidth: 100, maxHeight: 160) // hardcode
             .clipShape(.rect(cornerRadius: 12))
             .shadow(color: .black.opacity(0.4), radius: 5)
     }
