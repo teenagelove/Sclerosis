@@ -1,5 +1,5 @@
 //
-//  ConditionalSearchable.swift
+//  View+conditionalSearchable.swift
 //  Sclerosis
 //
 //  Created by Danil Kazakov on 25.09.2025.
@@ -13,7 +13,7 @@ extension View {
         selectedTab: Int,
         text: Binding<String>
     ) -> some View {
-        if selectedTab == 1 {
+        if selectedTab == 2 {
             self.searchable(text: text)
         } else {
             self
