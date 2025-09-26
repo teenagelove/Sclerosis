@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		ACBD51622E815E28006441C6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ACBD51612E815E28006441C6 /* Kingfisher */; };
+		ACC2485E2E86BA950083FB8A /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = ACC2485D2E86BA950083FB8A /* SkeletonUI */; };
+		ACC2486D2E86BC580083FB8A /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = ACC2486C2E86BC580083FB8A /* SwiftfulLoadingIndicators */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACBD51622E815E28006441C6 /* Kingfisher in Frameworks */,
+				ACC2485E2E86BA950083FB8A /* SkeletonUI in Frameworks */,
+				ACC2486D2E86BC580083FB8A /* SwiftfulLoadingIndicators in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +77,8 @@
 			name = Sclerosis;
 			packageProductDependencies = (
 				ACBD51612E815E28006441C6 /* Kingfisher */,
+				ACC2485D2E86BA950083FB8A /* SkeletonUI */,
+				ACC2486C2E86BC580083FB8A /* SwiftfulLoadingIndicators */,
 			);
 			productName = Sclerosis;
 			productReference = ACA817742E7FEAA400E78841 /* Sclerosis.app */;
@@ -107,6 +113,8 @@
 				ACEA1F2E2E80197A00B679DC /* XCRemoteSwiftPackageReference "xcstrings-tool-plugin" */,
 				ACEA1F352E801B6E00B679DC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				ACBD51602E815E28006441C6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				ACC2485C2E86BA950083FB8A /* XCRemoteSwiftPackageReference "SkeletonUI" */,
+				ACC2486B2E86BC580083FB8A /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ACA817752E7FEAA400E78841 /* Products */;
@@ -381,6 +389,22 @@
 				minimumVersion = 8.5.0;
 			};
 		};
+		ACC2485C2E86BA950083FB8A /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CSolanaM/SkeletonUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
+		ACC2486B2E86BC580083FB8A /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
 		ACEA1F2E2E80197A00B679DC /* XCRemoteSwiftPackageReference "xcstrings-tool-plugin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/liamnichols/xcstrings-tool-plugin";
@@ -404,6 +428,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ACBD51602E815E28006441C6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		ACC2485D2E86BA950083FB8A /* SkeletonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACC2485C2E86BA950083FB8A /* XCRemoteSwiftPackageReference "SkeletonUI" */;
+			productName = SkeletonUI;
+		};
+		ACC2486C2E86BC580083FB8A /* SwiftfulLoadingIndicators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACC2486B2E86BC580083FB8A /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;
+			productName = SwiftfulLoadingIndicators;
 		};
 		ACEA1F2F2E80198900B679DC /* XCStringsToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
