@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LibraryView: View {
     @Bindable var viewModel: LibraryViewModel
-    @SceneStorage("selectedTab") private var selectedTab: Int = .zero
+    @Binding var selectedTab: Int
 
     var body: some View {
         NavigationStack {
@@ -67,6 +67,6 @@ private extension LibraryView {
 
 #Preview {
     NavigationStack {
-        LibraryView(viewModel: LibraryViewModel())
+        LibraryView(viewModel: LibraryViewModel(), selectedTab: .constant(1))
     }
 }
