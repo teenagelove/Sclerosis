@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab: Int = .zero
+    @State private var selectedTab: TabID = .calendar
     @State private var libraryViewModel = LibraryViewModel()
 
     var body: some View {
@@ -16,7 +16,7 @@ struct MainTabView: View {
             Tab(
                 String(localizable: .calendarTitle),
                 systemImage: .calendar,
-                value: 0
+                value: TabID.calendar
             ) {
                 NavigationStack {
                     Text(.calendarTitle)
@@ -27,7 +27,7 @@ struct MainTabView: View {
             Tab(
                 String(localizable: .libraryTitle),
                 systemImage: .library,
-                value: 1
+                value: TabID.library
             ) {
                 LibraryView(
                     viewModel: libraryViewModel,
@@ -35,11 +35,11 @@ struct MainTabView: View {
                 )
             }
 
-            if selectedTab != 0 {
+            if selectedTab != .calendar {
                 Tab(
                     String(localizable: .search),
                     systemImage: .search,
-                    value: 2,
+                    value: TabID.search,
                     role: .search
                 ) {
                     LibraryView(
