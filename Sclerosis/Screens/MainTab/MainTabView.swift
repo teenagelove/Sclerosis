@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @SceneStorage("selectedTab") private var selectedTab: Int = .zero
+    @State private var selectedTab: Int = .zero
     @State private var libraryViewModel = LibraryViewModel()
 
     var body: some View {
@@ -29,7 +29,10 @@ struct MainTabView: View {
                 systemImage: .library,
                 value: 1
             ) {
-                LibraryView(viewModel: libraryViewModel)
+                LibraryView(
+                    viewModel: libraryViewModel,
+                    selectedTab: $selectedTab
+                )
             }
 
             if selectedTab != 0 {
@@ -39,7 +42,10 @@ struct MainTabView: View {
                     value: 2,
                     role: .search
                 ) {
-                    LibraryView(viewModel: libraryViewModel)
+                    LibraryView(
+                        viewModel: libraryViewModel,
+                        selectedTab: $selectedTab
+                    )
                 }
             }
         }
