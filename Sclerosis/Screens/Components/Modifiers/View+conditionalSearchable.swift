@@ -10,10 +10,10 @@ import SwiftUI
 extension View {
     @ViewBuilder
     func conditionalSearchable(
-        selectedTab: Int,
+        selectedTab: TabID,
         text: Binding<String>
     ) -> some View {
-        if selectedTab == 2 {
+        if selectedTab == .search {
             self.searchable(text: text)
         } else {
             self
