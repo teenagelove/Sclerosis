@@ -24,7 +24,7 @@ private extension CalendarView {
             Section { calendar } header: {
                 Text(.calendarTitle)
                     .font(.largeTitle.bold())
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.label)
             }
 
             showList
@@ -38,6 +38,7 @@ private extension CalendarView {
             displayedComponents: .date
         )
             .datePickerStyle(.graphical)
+            .tint(.primary)
     }
 
 //    @ViewBuilder
@@ -76,7 +77,7 @@ private extension CalendarView {
                 if index == 0 {
                     Text(.upcomingTitle)
                         .font(.largeTitle.bold())
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.label)
                 }
             }
         }
