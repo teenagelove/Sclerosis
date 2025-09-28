@@ -10,4 +10,7 @@ extension String {
     static let library = "books.vertical"
     static let plus = "plus"
     static let trash = "trash"
+    static let search = "magnifyingglass"
+    static let triangle = "exclamationmark.triangle.fill"
+    static let clockwise = "arrow.clockwise"
 }

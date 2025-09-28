@@ -8,23 +8,48 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @State private var selectedTab: TabID = .calendar
+    @State private var libraryViewModel = LibraryViewModel()
+
     var body: some View {
-        TabView {
-            NavigationStack {
-                Text(.calendarTitle)
-                    .navigationTitle(.calendarTitle)
-            }
-            .tabItem {
-                Label(.calendarTitle, systemImage: .calendar)
+        TabView(selection: $selectedTab) {
+            Tab(
+                String(localizable: .calendarTitle),
+                systemImage: .calendar,
+                value: TabID.calendar
+            ) {
+                NavigationStack {
+                    Text(.calendarTitle)
+                        .navigationTitle(.calendarTitle)
+                }
             }
 
-            NavigationStack {
-                LibraryView()
+            Tab(
+                String(localizable: .libraryTitle),
+                systemImage: .library,
+                value: TabID.library
+            ) {
+                LibraryView(
+                    viewModel: libraryViewModel,
+                    selectedTab: $selectedTab
+                )
             }
-            .tabItem {
-                Label(.libraryTitle, systemImage: .library)
+
+            if selectedTab != .calendar {
+                Tab(
+                    String(localizable: .search),
+                    systemImage: .search,
+                    value: TabID.search,
+                    role: .search
+                ) {
+                    LibraryView(
+                        viewModel: libraryViewModel,
+                        selectedTab: $selectedTab
+                    )
+                }
             }
         }
+        .tabBarMinimizeBehavior(.onScrollDown)
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  PlustButton.swift
+//  PlusButton.swift
 //  Sclerosis
 //
 //  Created by Danil Kazakov on 24.09.2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlustButton: View {
+struct PlusButton: View {
     let action: () -> Void
 
     var body: some View {
@@ -20,5 +20,5 @@ struct PlustButton: View {
 }
 
 #Preview {
-    PlustButton() { }
+    PlusButton { }
 }
