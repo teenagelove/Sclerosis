@@ -11,7 +11,7 @@ import SwiftUI
 struct SkeletonView: View {
     var body: some View {
         Rectangle()
-            .skeleton(with: true, shape: .rounded(.radius(12)))
+            .skeleton(with: true, shape: .rounded(.radius(22)))
     }
 }
 
