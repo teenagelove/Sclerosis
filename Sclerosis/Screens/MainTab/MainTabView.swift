@@ -18,10 +18,7 @@ struct MainTabView: View {
                 systemImage: .calendar,
                 value: TabID.calendar
             ) {
-                NavigationStack {
-                    Text(.calendarTitle)
-                        .navigationTitle(.calendarTitle)
-                }
+                CalendarView()
             }
 
             Tab(
