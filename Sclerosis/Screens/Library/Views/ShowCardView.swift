@@ -30,7 +30,7 @@ private extension ShowCardView {
             .resizable()
             .scaledToFill()
             .frame(maxWidth: 100, maxHeight: 160) // hardcode
-            .clipShape(.rect(cornerRadius: 12))
+            .clipShape(.rect(cornerRadius: 22))
             .shadow(color: .black.opacity(0.4), radius: 5)
     }
 

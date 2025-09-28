@@ -48,6 +48,7 @@ private extension LibraryView {
             ForEach(shows) { show in
                 Section {
                     ShowCardView(show: show)
+                        .listRowInsets(EdgeInsets())
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                             Button(role: .destructive) {
                                 viewModel.deleteShow(show)
