@@ -13,4 +13,6 @@ extension String {
     static let search = "magnifyingglass"
     static let triangle = "exclamationmark.triangle.fill"
     static let clockwise = "arrow.clockwise"
+    static let chevronLeft = "chevron.left"
+    static let chevronRight = "chevron.right"
 }

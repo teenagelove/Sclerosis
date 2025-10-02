@@ -5,14 +5,16 @@ extension Date {
     var fullDayString: String {
         return Date.fullDayFormatter.string(from: self)
     }
+}
 
-    // MARK: - Private
+// MARK: - Private
+private extension Date {
     private static let fullDayFormatter: DateFormatter = {
-        let fmt = DateFormatter()
-        fmt.locale = .autoupdatingCurrent
-        fmt.calendar = .autoupdatingCurrent
-        fmt.dateStyle = .full
-        fmt.timeStyle = .none
-        return fmt
+        let formatter = DateFormatter()
+        formatter.locale = .autoupdatingCurrent
+        formatter.calendar = .autoupdatingCurrent
+        formatter.dateStyle = .full
+        formatter.timeStyle = .none
+        return formatter
     }()
 }
