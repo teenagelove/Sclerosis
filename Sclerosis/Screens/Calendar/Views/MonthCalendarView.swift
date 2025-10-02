@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct MonthCalendarView: View {
+    // TODO: Needed?
     @Binding var selectedDate: Date?
+
+    // TODO: Needed?
     let markedDates: Set<Date> // expected to be normalized to startOfDay
 
+    // TODO: Remove after moving helpers
     private let calendar: Calendar = .current
+
     @State private var currentMonthStart: Date
 
+    // TODO: MVP ( NEED TO REWORK)
     init(selectedDate: Binding<Date?>, markedDates: Set<Date>) {
         self._selectedDate = selectedDate
         self.markedDates = markedDates
@@ -33,6 +39,7 @@ struct MonthCalendarView: View {
     }
 }
 
+// TODO: Too complicated extension
 private extension MonthCalendarView {
     var header: some View {
         HStack {
@@ -105,6 +112,7 @@ private extension MonthCalendarView {
             } label: {
                 VStack(spacing: 4) {
                     ZStack {
+                        // TODO: Thinking. Rework stacks (background and pointing)
                         if isSelected {
                             Circle()
                                 .fill(Color.accentColor.opacity(0.2))
@@ -148,6 +156,7 @@ private extension MonthCalendarView {
         }
     }
 
+    // TODO:  Move to helpers. Thinking: func or var?
     func monthTitle(for date: Date) -> String {
         let fmt = DateFormatter()
         fmt.locale = Locale.current

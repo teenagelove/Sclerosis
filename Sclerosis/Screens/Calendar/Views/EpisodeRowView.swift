@@ -51,7 +51,8 @@ private extension EpisodeRowView {
             .font(.caption)
             .foregroundStyle(.secondary)
     }
-    
+
+    // TODO: Think about styles
     var backgroundCard: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(Color(.systemBackground).opacity(0.8))
