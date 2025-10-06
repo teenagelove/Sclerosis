@@ -15,18 +15,13 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             Tab(
                 String(localizable: .calendarTitle),
-                systemImage: .calendar,
+                systemImage: SFSymbols.calendar,
                 value: TabID.calendar
-            ) {
-                NavigationStack {
-                    Text(.calendarTitle)
-                        .navigationTitle(.calendarTitle)
-                }
-            }
+            ) { CalendarScreenView() }
 
             Tab(
                 String(localizable: .libraryTitle),
-                systemImage: .library,
+                systemImage: SFSymbols.library,
                 value: TabID.library
             ) {
                 LibraryView(
@@ -38,7 +33,7 @@ struct MainTabView: View {
             if selectedTab != .calendar {
                 Tab(
                     String(localizable: .search),
-                    systemImage: .search,
+                    systemImage: SFSymbols.search,
                     value: TabID.search,
                     role: .search
                 ) {

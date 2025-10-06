@@ -1,11 +1,11 @@
 //
-//  String+Images.swift
+//  SFSymbols.swift
 //  Sclerosis
 //
 //  Created by Danil Kazakov on 21.09.2025.
 //
 
-extension String {
+enum SFSymbols {
     static let calendar = "calendar"
     static let library = "books.vertical"
     static let plus = "plus"
@@ -13,4 +13,6 @@ extension String {
     static let search = "magnifyingglass"
     static let triangle = "exclamationmark.triangle.fill"
     static let clockwise = "arrow.clockwise"
+    static let chevronLeft = "chevron.left"
+    static let chevronRight = "chevron.right"
 }

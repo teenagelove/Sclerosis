@@ -48,11 +48,12 @@ private extension LibraryView {
             ForEach(shows) { show in
                 Section {
                     ShowCardView(show: show)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        .listRowInsets(EdgeInsets())
+                        .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
                                 viewModel.deleteShow(show)
                             } label: {
-                                Label(.delete, systemImage: .trash)
+                                Label(.delete, systemImage: SFSymbols.trash)
                             }
                         }
                 }
