@@ -15,7 +15,10 @@ extension Date {
     var weekdayShort: String { formatted(.dateTime.weekday(.abbreviated)) }
 
     /// Returns a formatted string for the month and year (e.g., "October 2025").
-    var monthAndYearString: String { formatted(.dateTime.month(.wide).year()).capitalized }
+    var monthAndYear: String { formatted(.dateTime.month(.wide).year()).capitalized }
+
+    /// Returns a formatted string like "October 7, 2011"
+    var dayMonthYear: String { formatted(.dateTime.day().month(.wide).year()) }
 
     /// Returns the start of the month for the date.
     var startOfMonth: Date {

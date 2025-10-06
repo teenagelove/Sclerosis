@@ -43,13 +43,13 @@ private extension CalendarView {
             Button {
                 shiftMonth(by: -1)
             } label: {
-                Image(systemName: .chevronLeft)
+                Image(systemName: SFSymbols.chevronLeft)
             }
             .buttonStyle(.plain)
 
             Spacer()
 
-            Text(currentMonthStart.monthAndYearString)
+            Text(currentMonthStart.monthAndYear)
                 .font(.headline)
 
             Spacer()
@@ -57,7 +57,7 @@ private extension CalendarView {
             Button {
                 shiftMonth(by: 1)
             } label: {
-                Image(systemName: .chevronRight)
+                Image(systemName: SFSymbols.chevronRight)
             }
             .buttonStyle(.plain)
         }

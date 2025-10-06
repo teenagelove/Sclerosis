@@ -22,7 +22,7 @@ struct ErrorView: View {
 
 private extension ErrorView {
     var image: some View {
-        Image(systemName: .triangle)
+        Image(systemName: SFSymbols.triangle)
             .resizable()
             .scaledToFit()
             .frame(width: 40, height: 40)
@@ -39,7 +39,7 @@ private extension ErrorView {
 
     var actionButton: some View {
         Button(action: action) {
-            Label(.errorRepeat, systemImage: .clockwise)
+            Label(.errorRepeat, systemImage: SFSymbols.clockwise)
                 .font(.headline)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)

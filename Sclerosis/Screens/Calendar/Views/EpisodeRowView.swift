@@ -12,12 +12,12 @@ struct EpisodeRowView: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
+            CoverView(url: Show.MockShow.cover)
             episodeDetails
             Spacer()
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal)
-        .background(backgroundCard)
+//        .padding(.vertical, 8)
+//        .padding(.horizontal)
     }
 }
 
@@ -31,7 +31,7 @@ private extension EpisodeRowView {
     }
     
     var episodeNameText: some View {
-        Text(episode.name)
+        Text(episode.showName)
             .font(.headline)
             .foregroundStyle(.primary)
             .lineLimit(1)
@@ -39,7 +39,7 @@ private extension EpisodeRowView {
     }
     
     var episodeShowNameText: some View {
-        Text(episode.showName)
+        Text(episode.name)
             .font(.subheadline)
             .foregroundStyle(.secondary)
             .lineLimit(1)
@@ -47,17 +47,17 @@ private extension EpisodeRowView {
     }
     
     var episodeReleaseDateText: some View {
-        Text(episode.releaseDate.monthAndYearString)
+        Text(episode.releaseDate.dayMonthYear)
             .font(.caption)
             .foregroundStyle(.secondary)
     }
 
     // TODO: Think about styles
-    var backgroundCard: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .fill(Color(.systemBackground).opacity(0.8))
-            .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
-    }
+//    var backgroundCard: some View {
+//        RoundedRectangle(cornerRadius: 10)
+//            .fill(Color(.systemBackground).opacity(0.8))
+//            .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
+//    }
 }
 
 #Preview {

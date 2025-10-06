@@ -53,7 +53,7 @@ private extension LibraryView {
                             Button(role: .destructive) {
                                 viewModel.deleteShow(show)
                             } label: {
-                                Label(.delete, systemImage: .trash)
+                                Label(.delete, systemImage: SFSymbols.trash)
                             }
                         }
                 }

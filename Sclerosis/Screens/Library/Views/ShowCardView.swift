@@ -5,7 +5,6 @@
 //  Created by Danil Kazakov on 22.09.2025.
 //
 
-import Kingfisher
 import SwiftUI
 
 struct ShowCardView: View {
@@ -13,27 +12,13 @@ struct ShowCardView: View {
 
     var body: some View {
         HStack {
-            cover
+            CoverView(url: show.cover)
             description
         }
     }
 }
 
 private extension ShowCardView {
-    var cover: some View {
-        KFImage(show.cover)
-            .fade(duration: 0.3)
-            .placeholder {
-                SkeletonView()
-                    .frame(width: 100, height: 160) // hardcode
-            }
-            .resizable()
-            .scaledToFill()
-            .frame(maxWidth: 100, maxHeight: 160) // hardcode
-            .clipShape(.rect(cornerRadius: 22))
-            .shadow(color: .black.opacity(0.4), radius: 5)
-    }
-
     var description: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text(show.name)

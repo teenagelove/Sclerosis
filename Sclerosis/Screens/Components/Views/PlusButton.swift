@@ -14,7 +14,7 @@ struct PlusButton: View {
         Button {
             // Handle plus button
         } label: {
-            Image(systemName: .plus)
+            Image(systemName: SFSymbols.plus)
         }
     }
 }

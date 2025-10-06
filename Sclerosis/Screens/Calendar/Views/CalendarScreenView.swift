@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarScreenView: View {
     @State private var viewModel = CalendarViewModel()
-    
+
     var body: some View {
         NavigationStack { content }
             .task { await viewModel.loadEpisodes() }
@@ -39,7 +39,7 @@ private extension CalendarScreenView {
             }
         }
     }
-    
+
     // MARK: - Sections
     var calendarSection: some View {
         Section {
@@ -54,26 +54,36 @@ private extension CalendarScreenView {
                 .foregroundStyle(.title)
         }
     }
-    
+
     var episodesSection: some View {
-        Section {
+        Group {
             if viewModel.episodesToDisplay.isEmpty {
-                Text(.emptyStateTitle)
-                    .foregroundStyle(.secondary)
+                ContentUnavailableView(
+                    .emptyStateTitle,
+                    systemImage: SFSymbols.calendar,
+                    description: Text(String(localized: .emptyStateTitle))
+                )
             } else {
-                ForEach(viewModel.episodesToDisplay, id: \.id) { episode in
-                    EpisodeRowView(episode: episode)
+                ForEach(
+                    Array(viewModel.episodesToDisplay).enumerated(),
+                    id: \.element.id
+                ) { index, episode in
+                    Section {
+                        EpisodeRowView(episode: episode)
+                            .listRowInsets(EdgeInsets())
+                    } header: {
+                        if let selectedDate = viewModel.selectedDate {
+                            Text(selectedDate.weekdayName)
+                                .font(.largeTitle.bold())
+                                .foregroundStyle(.title)
+                        } else if index == 0 {
+                            Text(.upcomingTitle)
+                                .font(.largeTitle.bold())
+                                .foregroundStyle(.title)
+                        }
+                    }
+                    .listSectionSpacing(.compact)
                 }
-            }
-        } header: {
-            if let selectedDate = viewModel.selectedDate {
-                Text(selectedDate.weekdayName)
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(.title)
-            } else {
-                Text(.upcomingTitle)
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(.title)
             }
         }
     }
