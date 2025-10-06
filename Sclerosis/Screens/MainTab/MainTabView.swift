@@ -18,7 +18,7 @@ struct MainTabView: View {
                 systemImage: .calendar,
                 value: TabID.calendar
             ) {
-                CalendarView()
+                CalendarScreenView()
             }
 
             Tab(

@@ -2,83 +2,156 @@
 //  CalendarView.swift
 //  Sclerosis
 //
-//  Created by Danil Kazakov on 28.09.2025.
+//  Created by Danil Kazakov on 02.10.2025.
 //
 
 import SwiftUI
 
 struct CalendarView: View {
-    @State private var viewModel = CalendarViewModel()
-    
+    // TODO: Needed?
+    @Binding var selectedDate: Date?
+
+    // TODO: Needed?
+    let markedDates: Set<Date> // expected to be normalized to startOfDay
+
+    // TODO: Remove after moving helpers
+    private let calendar: Calendar = .current
+
+    @State private var currentMonthStart: Date
+
+    // TODO: MVP ( NEED TO REWORK)
+    init(selectedDate: Binding<Date?>, markedDates: Set<Date>) {
+        self._selectedDate = selectedDate
+        self.markedDates = markedDates
+        self._currentMonthStart = State(initialValue: Date().startOfMonth)
+    }
+
     var body: some View {
-        NavigationStack { content }
-            .task { await viewModel.loadEpisodes() }
-            .refreshable { await viewModel.loadEpisodes(isUpdate: true) }
+        VStack(spacing: 8) {
+            header
+            weekdayLabels
+            daysGrid
+        }
+        .padding(.vertical, 8)
     }
 }
 
+// TODO: Too complicated extension
 private extension CalendarView {
-    // MARK: - Content
-    @ViewBuilder
-    var content: some View {
-        Group {
-            switch viewModel.state {
-            case .loading:
-                LoadingView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            case .loaded:
-                List {
-                    calendarSection
-                    episodesSection
-                }
-            case .error(let error):
-                ErrorView(
-                    message: error.localizedDescription,
-                    action: { Task { await viewModel.loadEpisodes() } }
-                )
+    var header: some View {
+        HStack {
+            Button {
+                shiftMonth(by: -1)
+            } label: {
+                Image(systemName: .chevronLeft)
             }
+            .buttonStyle(.plain)
+
+            Spacer()
+
+            Text(currentMonthStart.monthAndYearString)
+                .font(.headline)
+
+            Spacer()
+
+            Button {
+                shiftMonth(by: 1)
+            } label: {
+                Image(systemName: .chevronRight)
+            }
+            .buttonStyle(.plain)
         }
+        .padding(.horizontal)
     }
-    
-    // MARK: - Sections
-    var calendarSection: some View {
-        Section {
-            MonthCalendarView(
-                selectedDate: $viewModel.selectedDate,
-                markedDates: viewModel.markedDates
-            )
-            .tint(Color.accentColor)
-        } header: {
-            Text(.calendarTitle)
-                .font(.largeTitle.bold())
-                .foregroundStyle(.title)
-        }
-    }
-    
-    var episodesSection: some View {
-        Section {
-            if viewModel.episodesToDisplay.isEmpty {
-                Text(.emptyStateTitle)
+
+    var weekdayLabels: some View {
+        HStack(spacing: 0) {
+            ForEach(currentMonthStart.weekdaySymbols, id: \.self) { symbol in
+                Text(symbol)
+                    .font(.caption)
                     .foregroundStyle(.secondary)
-            } else {
-                ForEach(viewModel.episodesToDisplay, id: \.id) { episode in
-                    EpisodeRowView(episode: episode)
+                    .frame(maxWidth: .infinity)
+            }
+        }
+        .padding(.horizontal)
+    }
+
+    var daysGrid: some View {
+        let days = currentMonthStart.calendarGridDays
+        let rows = days.count / 7
+        return VStack(spacing: 6) {
+            ForEach(0..<rows, id: \.self) { row in
+                HStack(spacing: 0) {
+                    ForEach(0..<7, id: \.self) { col in
+                        let index = row * 7 + col
+                        dayCell(days[index])
+                            .frame(maxWidth: .infinity, minHeight: 36)
+                    }
                 }
             }
-        } header: {
-            if let selectedDate = viewModel.selectedDate {
-                Text(selectedDate.fullDayString)
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(.title)
-            } else {
-                Text(.upcomingTitle)
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(.title)
+        }
+        .padding(.horizontal)
+    }
+
+    @ViewBuilder
+    func dayCell(_ date: Date?) -> some View {
+        if let date {
+            let isSelected = selectedDate?.isSameDay(as: date) ?? false
+            let isMarked = markedDates.contains(date.startOfDay)
+
+            Button {
+                selectedDate = isSelected ? nil : date
+            } label: {
+                VStack(spacing: 4) {
+                    ZStack {
+                        // TODO: Thinking. Rework stacks (background and pointing)
+                        if isSelected {
+                            Circle()
+                                .fill(Color.accentColor.opacity(0.2))
+                                .frame(width: 44, height: 44)
+                        }
+
+                        if date.isToday {
+                            Circle()
+                                .fill(Color.primary.opacity(0.2))
+                                .frame(width: 44, height: 44)
+                        }
+
+                        Text("\(date.day)")
+                            .font(.body)
+                            .fontWeight(isSelected ? .semibold : .regular)
+                            .foregroundStyle(.primary)
+                    }
+
+                    // Dot marker
+                    Circle()
+                        .fill(isMarked ? Color.accentColor : Color.clear)
+                        .frame(width: 6, height: 6)
+                        .opacity(isMarked ? 1.0 : 0.0)
+                }
+                .frame(maxWidth: .infinity, maxHeight: 44)
+//                .frame(height: 44)
+//                .overlay(
+//                    Circle()
+//                        .stroke(isToday ? Color.primary : Color.clear, lineWidth: 1)
+//                )
             }
+            .buttonStyle(.plain)
+        } else {
+            Color.clear.frame(height: 44)
+        }
+    }
+
+    func shiftMonth(by offset: Int) {
+        if let newMonthStart = currentMonthStart.byAddingMonths(offset)?.startOfMonth {
+            currentMonthStart = newMonthStart
         }
     }
 }
 
 #Preview {
-    CalendarView()
+    let today = Date().startOfDay
+    let marks: Set<Date> = [today, today.byAddingDays(2)!]
+
+    CalendarView(selectedDate: .constant(Date()), markedDates: marks)
 }
