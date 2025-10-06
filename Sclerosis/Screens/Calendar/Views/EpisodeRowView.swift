@@ -16,8 +16,6 @@ struct EpisodeRowView: View {
             episodeDetails
             Spacer()
         }
-//        .padding(.vertical, 8)
-//        .padding(.horizontal)
     }
 }
 

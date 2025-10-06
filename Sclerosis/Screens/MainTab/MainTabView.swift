@@ -17,9 +17,7 @@ struct MainTabView: View {
                 String(localizable: .calendarTitle),
                 systemImage: SFSymbols.calendar,
                 value: TabID.calendar
-            ) {
-                CalendarScreenView()
-            }
+            ) { CalendarScreenView() }
 
             Tab(
                 String(localizable: .libraryTitle),

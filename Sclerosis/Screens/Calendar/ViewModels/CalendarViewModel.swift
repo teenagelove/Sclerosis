@@ -22,13 +22,14 @@ final class CalendarViewModel {
     var selectedDate: Date?
     private(set) var state: State = .loading
     private(set) var episodes: [Episode] = []
-    private let calendar: Calendar = .current
 
     // MARK: - Loading
     func loadEpisodes(isUpdate: Bool = false) async {
         switch (state, isUpdate) {
         case (.loaded, false):
             return
+        case (.loaded, true):
+            break
         default:
             state = .loading
         }
@@ -49,16 +50,15 @@ final class CalendarViewModel {
 extension CalendarViewModel {
 
     var upcomingEpisodes: [Episode] {
-        let today = calendar.startOfDay(for: Date())
         return episodes
-            .filter { calendar.startOfDay(for: $0.releaseDate) >= today }
+            .filter { $0.releaseDate.startOfDay >= Date().startOfDay }
             .sorted { $0.releaseDate < $1.releaseDate }
     }
 
     var episodesForSelectedDate: [Episode] {
         guard let selectedDate else { return [] }
         return episodes
-            .filter { calendar.isDate($0.releaseDate, inSameDayAs: selectedDate) }
+            .filter { $0.releaseDate.isSameDay(as: selectedDate) }
             .sorted { $0.releaseDate < $1.releaseDate }
     }
 
@@ -67,7 +67,7 @@ extension CalendarViewModel {
     }
 
     var markedDates: Set<Date> {
-        let dates = upcomingEpisodes.map { calendar.startOfDay(for: $0.releaseDate) }
+        let dates = upcomingEpisodes.map { $0.releaseDate.startOfDay }
         return Set(dates)
     }
 }

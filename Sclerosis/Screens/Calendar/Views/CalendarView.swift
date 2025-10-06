@@ -8,31 +8,17 @@
 import SwiftUI
 
 struct CalendarView: View {
-    // TODO: Needed?
-    @Binding var selectedDate: Date?
-
-    // TODO: Needed?
     let markedDates: Set<Date> // expected to be normalized to startOfDay
-
-    // TODO: Remove after moving helpers
-    private let calendar: Calendar = .current
-
-    @State private var currentMonthStart: Date
-
-    // TODO: MVP ( NEED TO REWORK)
-    init(selectedDate: Binding<Date?>, markedDates: Set<Date>) {
-        self._selectedDate = selectedDate
-        self.markedDates = markedDates
-        self._currentMonthStart = State(initialValue: Date().startOfMonth)
-    }
+    @Binding var selectedDate: Date?
+    @State private var currentMonthStart: Date = .init().startOfMonth
 
     var body: some View {
         VStack(spacing: 8) {
             header
+                .padding(.bottom, 8)
             weekdayLabels
             daysGrid
         }
-        .padding(.vertical, 8)
     }
 }
 
@@ -44,6 +30,7 @@ private extension CalendarView {
                 shiftMonth(by: -1)
             } label: {
                 Image(systemName: SFSymbols.chevronLeft)
+                    .font(.headline)
             }
             .buttonStyle(.plain)
 
@@ -58,10 +45,10 @@ private extension CalendarView {
                 shiftMonth(by: 1)
             } label: {
                 Image(systemName: SFSymbols.chevronRight)
+                    .font(.headline)
             }
             .buttonStyle(.plain)
         }
-        .padding(.horizontal)
     }
 
     var weekdayLabels: some View {
@@ -73,7 +60,6 @@ private extension CalendarView {
                     .frame(maxWidth: .infinity)
             }
         }
-        .padding(.horizontal)
     }
 
     var daysGrid: some View {
@@ -90,7 +76,6 @@ private extension CalendarView {
                 }
             }
         }
-        .padding(.horizontal)
     }
 
     @ViewBuilder
@@ -104,16 +89,15 @@ private extension CalendarView {
             } label: {
                 VStack(spacing: 4) {
                     ZStack {
-                        // TODO: Thinking. Rework stacks (background and pointing)
                         if isSelected {
                             Circle()
-                                .fill(Color.accentColor.opacity(0.2))
+                                .fill(Color.accentColor.opacity(0.8))
                                 .frame(width: 44, height: 44)
                         }
 
                         if date.isToday {
                             Circle()
-                                .fill(Color.primary.opacity(0.2))
+                                .fill(Color.accentColor.opacity(0.2))
                                 .frame(width: 44, height: 44)
                         }
 
@@ -130,11 +114,6 @@ private extension CalendarView {
                         .opacity(isMarked ? 1.0 : 0.0)
                 }
                 .frame(maxWidth: .infinity, maxHeight: 44)
-//                .frame(height: 44)
-//                .overlay(
-//                    Circle()
-//                        .stroke(isToday ? Color.primary : Color.clear, lineWidth: 1)
-//                )
             }
             .buttonStyle(.plain)
         } else {
@@ -153,5 +132,5 @@ private extension CalendarView {
     let today = Date().startOfDay
     let marks = Set([today, today.byAddingDays(2)].compactMap { $0 })
 
-    return CalendarView(selectedDate: .constant(nil), markedDates: marks)
+    return CalendarView(markedDates: marks, selectedDate: .constant(Date()))
 }

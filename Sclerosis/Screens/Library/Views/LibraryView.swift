@@ -49,7 +49,7 @@ private extension LibraryView {
                 Section {
                     ShowCardView(show: show)
                         .listRowInsets(EdgeInsets())
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
                                 viewModel.deleteShow(show)
                             } label: {

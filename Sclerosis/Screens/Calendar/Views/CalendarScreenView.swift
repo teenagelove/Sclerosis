@@ -44,10 +44,9 @@ private extension CalendarScreenView {
     var calendarSection: some View {
         Section {
             CalendarView(
-                selectedDate: $viewModel.selectedDate,
-                markedDates: viewModel.markedDates
+                markedDates: viewModel.markedDates,
+                selectedDate: $viewModel.selectedDate
             )
-            .tint(Color.accentColor)
         } header: {
             Text(.calendarTitle)
                 .font(.largeTitle.bold())
