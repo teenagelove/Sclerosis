@@ -47,7 +47,7 @@ private extension EpisodeRowView {
     }
     
     var episodeReleaseDateText: some View {
-        Text(episode.releaseDate.fullDayString)
+        Text(episode.releaseDate.monthAndYearString)
             .font(.caption)
             .foregroundStyle(.secondary)
     }

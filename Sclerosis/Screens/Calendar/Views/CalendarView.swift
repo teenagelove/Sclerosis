@@ -151,7 +151,7 @@ private extension CalendarView {
 
 #Preview {
     let today = Date().startOfDay
-    let marks: Set<Date> = [today, today.byAddingDays(2)!]
+    let marks = Set([today, today.byAddingDays(2)].compactMap { $0 })
 
-    CalendarView(selectedDate: .constant(Date()), markedDates: marks)
+    return CalendarView(selectedDate: .constant(nil), markedDates: marks)
 }

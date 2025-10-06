@@ -1,25 +1,27 @@
 import Foundation
 
 extension Date {
+
     var isToday: Bool { Calendar.current.isDateInToday(self) }
 
     /// Returns the day component (1-31)
     var day: Int { Calendar.current.component(.day, from: self) }
 
-    /// Returns a localized, full-style date string (no time), respecting the user's current settings.
-    var fullDayString: String { Date.fullDayFormatter.string(from: self) }
-
     /// Returns the start of the day for the date.
     var startOfDay: Date { Calendar.current.startOfDay(for: self) }
+
+    var weekdayName: String { formatted(.dateTime.weekday(.wide)) }
+
+    var weekdayShort: String { formatted(.dateTime.weekday(.abbreviated)) }
+
+    /// Returns a formatted string for the month and year (e.g., "October 2025").
+    var monthAndYearString: String { formatted(.dateTime.month(.wide).year()).capitalized }
 
     /// Returns the start of the month for the date.
     var startOfMonth: Date {
         let components = Calendar.current.dateComponents([.year, .month], from: self)
         return Calendar.current.date(from: components) ?? self.startOfDay
     }
-
-    /// Returns a formatted string for the month and year (e.g., "October 2025").
-    var monthAndYearString: String { Date.monthYearFormatter.string(from: self).capitalized }
 
     /// Returns weekday symbols ordered by calendar's first weekday
     var weekdaySymbols: [String] {
@@ -82,24 +84,4 @@ extension Date {
     func byAddingDays(_ days: Int) -> Date? {
         Calendar.current.date(byAdding: .day, value: days, to: self)
     }
-}
-
-// MARK: - Private Formatters
-private extension Date {
-    static let fullDayFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.locale = .autoupdatingCurrent
-        formatter.calendar = .autoupdatingCurrent
-        formatter.dateStyle = .full
-        formatter.timeStyle = .none
-        return formatter
-    }()
-
-    static let monthYearFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.locale = .autoupdatingCurrent
-        formatter.calendar = .autoupdatingCurrent
-        formatter.dateFormat = "LLLL yyyy"
-        return formatter
-    }()
 }

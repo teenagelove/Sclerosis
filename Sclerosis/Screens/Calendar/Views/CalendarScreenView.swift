@@ -67,7 +67,7 @@ private extension CalendarScreenView {
             }
         } header: {
             if let selectedDate = viewModel.selectedDate {
-                Text(selectedDate.fullDayString)
+                Text(selectedDate.weekdayName)
                     .font(.largeTitle.bold())
                     .foregroundStyle(.title)
             } else {
