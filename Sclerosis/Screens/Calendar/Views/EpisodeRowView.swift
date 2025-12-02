@@ -9,10 +9,11 @@ import SwiftUI
 
 struct EpisodeRowView: View {
     let episode: Episode
-    
+    var coverURL: URL?
+
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
-            CoverView(url: Show.MockShow.cover)
+            CoverView(url: coverURL)
             episodeDetails
             Spacer()
         }

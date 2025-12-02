@@ -22,6 +22,7 @@ final class CalendarViewModel {
     var selectedDate: Date?
     private(set) var state: State = .loading
     private(set) var episodes: [Episode] = []
+    private(set) var show: Show?
 
     // MARK: - Loading
     func loadEpisodes(isUpdate: Bool = false) async {
@@ -36,9 +37,11 @@ final class CalendarViewModel {
 
         do {
             // Simulate network delay
-            try await Task.sleep(for: .seconds(1.5))
-            let allMockEpisodes = Episode.MockEpisodes
-            self.episodes = allMockEpisodes
+//            try await Task.sleep(for: .seconds(1.5))
+//            let allMockEpisodes = Episode.MockEpisodes
+//            self.episodes = allMockEpisodes
+            episodes = try await TVMazeService.fetchEpisodes(forID: 2993)
+            show = try await TVMazeService.fetchShow(url: episodes.first?.showURL)
             state = .loaded
         } catch {
             state = .error(error)

@@ -27,14 +27,14 @@ private extension ShowCardView {
             Text(show.description)
                 .font(.regular14)
 
-            seasonsCount
+//            seasonsCount
         }
     }
 
-    var seasonsCount: some View {
-        Text("\(.seasonsCount): \(show.seasons.count)")
-            .font(.regular14)
-    }
+//    var seasonsCount: some View {
+//        Text("\(.seasonsCount): \(show.seasons.count)")
+//            .font(.regular14)
+//    }
 }
 
 #Preview {

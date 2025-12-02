@@ -14,13 +14,13 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab(
-                String(localizable: .calendarTitle),
+                .calendarTitle,
                 systemImage: SFSymbols.calendar,
                 value: TabID.calendar
             ) { CalendarScreenView() }
 
             Tab(
-                String(localizable: .libraryTitle),
+                .libraryTitle,
                 systemImage: SFSymbols.library,
                 value: TabID.library
             ) {
@@ -32,7 +32,7 @@ struct MainTabView: View {
 
             if selectedTab != .calendar {
                 Tab(
-                    String(localizable: .search),
+                    .search,
                     systemImage: SFSymbols.search,
                     value: TabID.search,
                     role: .search

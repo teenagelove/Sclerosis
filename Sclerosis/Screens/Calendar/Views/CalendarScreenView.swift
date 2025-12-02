@@ -68,7 +68,10 @@ private extension CalendarScreenView {
                     id: \.element.id
                 ) { index, episode in
                     Section {
-                        EpisodeRowView(episode: episode)
+                        EpisodeRowView(
+                            episode: episode,
+                            coverURL: viewModel.show?.cover
+                        )
                             .listRowInsets(EdgeInsets())
                     } header: {
                         if let selectedDate = viewModel.selectedDate {
