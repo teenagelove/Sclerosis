@@ -4,7 +4,7 @@ reporter: "xcode"
 check_for_updates: true
 
 line_length:
-  warning: 110   # Максимальная длина строки для предупреждения
+  warning: 150   # Максимальная длина строки для предупреждения
 
 file_length:
   warning: 500   # Предупреждение при превышении 500 строк
