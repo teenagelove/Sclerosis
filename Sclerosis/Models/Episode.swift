@@ -8,8 +8,9 @@
 import Foundation
 
 struct Episode: Identifiable {
-    let id = UUID()
+    let id: String
     let name: String
     let showName: String
+    let showURL: URL?
     let releaseDate: Date
 }

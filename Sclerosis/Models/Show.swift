@@ -8,9 +8,9 @@
 import Foundation
 
 struct Show: Identifiable {
-    let id = UUID()
+    let id: String
     let name: String
     let description: String
-    let cover: URL
-    let seasons: [Season]
+    let cover: URL?
+//    let seasons: [Season]
 }
